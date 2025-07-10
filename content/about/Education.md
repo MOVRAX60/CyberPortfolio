@@ -23,9 +23,8 @@ title = 'Education'
 - **Database Design and Implementation**  
   Designed relational databases using SQL and ER diagrams. Implemented secure, normalized schemas and query optimization. Explored access controls, encryption, and backups to secure sensitive data in transit and at rest.
 
-<br>
 ---
----
+
 
 ## Bachelors of Science in Information Technology 
 **Institution:** University of Massachusetts - Lowell  

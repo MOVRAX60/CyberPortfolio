@@ -1,6 +1,6 @@
 ---
 title: "Sentinel Monitoring and Alerting with SQL Injections"
-url: "/grad-project/"
+url: "/projects/cloud/grad-project/"
 description: "Azure"
 cover : "/images/gradprojimport/FA2022_CC031_ProjAzure_Gagnon_Thomas_VM_AzureMySQL_Bastion_LogAnalytics_Sentinel_AppGate_WAF_html_a5de6192.jpg"
 ---
