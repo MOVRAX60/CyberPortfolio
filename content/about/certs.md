@@ -42,7 +42,7 @@ title = 'Certifications'
 </div>
 
 <div style="display: flex; align-items: center; margin-bottom: 2rem;">
-  <img src="/images/certifications/GNFABadge.png" alt="GNFA" style="width: 100px; margin-right: 20px;" />
+  <img src="CyberPortfolio/images/certifications/GNFABadge.png" alt="GNFA" style="width: 100px; margin-right: 20px;" />
   <div>
     <h3>GIAC Network Forensic Analyst (GNFA)</h3>
     <p>Issued by: GIAC<br>
@@ -52,7 +52,7 @@ title = 'Certifications'
 </div>
 
 <div style="display: flex; align-items: center; margin-bottom: 2rem;">
-  <img src="/images/certifications/GPENbadge.png" alt="GPEN" style="width: 100px; margin-right: 20px;" />
+  <img src="CyberPortfolio/images/certifications/GPENbadge.png" alt="GPEN" style="width: 100px; margin-right: 20px;" />
   <div>
     <h3>GIAC Penetration Tester (GPEN)</h3>
     <p>Issued by: GIAC<br>
