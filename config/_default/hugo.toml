@@ -1,11 +1,15 @@
-baseurl = "/"
+baseurl = "https://movrax60.github.io/CyberPortfolio/"
 languageCode = "en-us"
 pagination.pagerSize = 5
 theme = "terminal"
 
+
 # Required for Chroma and the custom syntax highlighting.
 [markup.highlight]
   noClasses = false
+
+[markup.goldmark.renderer]
+  unsafe = true
 
 [params]
   # dir name of your main content (default is `content/posts`).
