@@ -71,5 +71,3 @@ title = 'Certifications'
     Credly Page
   </a>
 
-<script data-goatcounter="https://movrax60.goatcounter.com/count"
-        async src="//gc.zgo.at/count.js"></script>
