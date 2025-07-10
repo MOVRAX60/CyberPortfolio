@@ -20,18 +20,20 @@
     <loc>//localhost:1313/projects/</loc>
     <lastmod>2025-06-04T21:34:57-04:00</lastmod>
   </url><url>
-    <loc>//localhost:1313/about/skills/</loc>
+    <loc>//localhost:1313/skills/</loc>
     <lastmod>2025-06-04T21:34:57-04:00</lastmod>
   </url><url>
-    <loc>//localhost:1313/index/</loc>
+    <loc>//localhost:1313/index/links/</loc>
   </url><url>
     <loc>//localhost:1313/categories/</loc>
   </url><url>
+    <loc>//localhost:1313/index/</loc>
+  </url><url>
     <loc>//localhost:1313/posts/</loc>
   </url><url>
-    <loc>//localhost:1313/grad-project/</loc>
+    <loc>//localhost:1313/projects/cloud/grad-project/</loc>
   </url><url>
-    <loc>//localhost:1313/grad-project/</loc>
+    <loc>//localhost:1313/projects/cloud/grad-project/</loc>
   </url><url>
     <loc>//localhost:1313/tags/</loc>
   </url>
