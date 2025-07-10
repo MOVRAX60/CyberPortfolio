@@ -1,4 +1,4 @@
-baseurl = "/"
+baseurl = "https://movrax60.github.io/CyberPortfolio/"
 languageCode = "en-us"
 pagination.pagerSize = 5
 theme = "terminal"
