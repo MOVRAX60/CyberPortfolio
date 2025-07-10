@@ -4,7 +4,7 @@ title = 'Certifications'
 +++
 
 <div style="display: flex; align-items: center; margin-bottom: 2rem;">
-  <img src="/CyberPortfolio/images/certifications/CISSPbadge.png" alt="CISSP" style="width: 100px; margin-right: 20px;" />
+  <img src='/CyberPortfolio/images/certifications/CISSPbadge.png' alt="CISSP" style="width: 100px; margin-right: 20px;" />
   <div>
     <h3>Certified Information Systems Security Professional (CISSP)</h3>
     <p>Issued by: ISC²<br>
@@ -13,7 +13,7 @@ title = 'Certifications'
 </div>
 
 <div style="display: flex; align-items: center; margin-bottom: 2rem;">
-  <img src="/CyberPortfolio/images/certifications/CCSPbadge.png" alt="CCSP" style="width: 100px; margin-right: 20px;" />
+  <img src='/CyberPortfolio/images/certifications/CCSPbadge.png' alt="CCSP" style="width: 100px; margin-right: 20px;" />
   <div>
     <h3>Certified Cloud Security Professional (CCSP)</h3>
     <p>Issued by: ISC²<br>
