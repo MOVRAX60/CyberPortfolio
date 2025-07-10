@@ -1,5 +1,5 @@
 +++
-url = "/Index/"
+url = "/contents/"
 +++
 # Attack
 
