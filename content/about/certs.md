@@ -8,8 +8,7 @@ title = 'Certifications'
   <div>
     <h3>Certified Information Systems Security Professional (CISSP)</h3>
     <p>Issued by: ISC²<br>
-    Credential ID: [Your ID]<br>
-    Valid Through: [Expiration Date]</p>
+    Issued: June 19, 2024</p>
   </div>
 </div>
 
@@ -18,8 +17,7 @@ title = 'Certifications'
   <div>
     <h3>Certified Cloud Security Professional (CCSP)</h3>
     <p>Issued by: ISC²<br>
-    Credential ID: [Your ID]<br>
-    Valid Through: [Expiration Date]</p>
+    Issued: September 17, 2024</p>
   </div>
 </div>
 
@@ -28,8 +26,8 @@ title = 'Certifications'
   <div>
     <h3>GIAC Certified Incident Handler (GCIH)</h3>
     <p>Issued by: GIAC<br>
-    Credential ID: [Your ID]<br>
-    Valid Through: [Expiration Date]</p>
+    Credential ID: 43364<br>
+    Issued: August 12, 2022</p>
   </div>
 </div>
 
@@ -38,8 +36,8 @@ title = 'Certifications'
   <div>
     <h3>GIAC Certified Forensic Analyst (GCFA)</h3>
     <p>Issued by: GIAC<br>
-    Credential ID: [Your ID]<br>
-    Valid Through: [Expiration Date]</p>
+    Credential ID: 21010<br>
+    Issued: February 24, 2023</p>
   </div>
 </div>
 
@@ -48,8 +46,8 @@ title = 'Certifications'
   <div>
     <h3>GIAC Network Forensic Analyst (GNFA)</h3>
     <p>Issued by: GIAC<br>
-    Credential ID: [Your ID]<br>
-    Valid Through: [Expiration Date]</p>
+    Credential ID: 4346<br>
+    Issued: June 6, 2023</p>
   </div>
 </div>
 
@@ -58,8 +56,8 @@ title = 'Certifications'
   <div>
     <h3>GIAC Penetration Tester (GPEN)</h3>
     <p>Issued by: GIAC<br>
-    Credential ID: [Your ID]<br>
-    Valid Through: [Expiration Date]</p>
+    Credential ID: 18698<br>
+    Issued: September 22, 2023</p>
   </div>
 </div>
 
@@ -68,7 +66,7 @@ title = 'Certifications'
      style="
        font-weight: 600;
        text-decoration: none;
-       color: #0000FF;
+       color: #00b3b3;
      ">
     Certification Portal
   </a>
