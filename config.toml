@@ -114,7 +114,7 @@ theme = "terminal"
           url = "/write-ups"
           weight = 3
         [[languages.en.menu.main]]
-          identifier = "index"
+          identifier = "Index"
           name = "Index"
           url = "/Index"
           weight = 4
