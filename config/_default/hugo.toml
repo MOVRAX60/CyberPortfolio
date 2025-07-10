@@ -1,4 +1,4 @@
-baseurl = "/"
+baseurl = "https://thomgagnon-portfol.io/"
 languageCode = "en-us"
 pagination.pagerSize = 5
 theme = "terminal"
