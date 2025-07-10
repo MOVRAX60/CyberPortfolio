@@ -11,6 +11,9 @@ theme = "terminal"
 [markup.goldmark.renderer]
   unsafe = true
 
+[params.goatCounter]
+  code = "movrax60"
+
 [params]
   # dir name of your main content (default is `content/posts`).
   # the list of set content will show up on your contents page (baseurl).
@@ -38,7 +41,7 @@ theme = "terminal"
   showLastUpdated = false
 
 
-  goatcounter = "movrax60"
+
   # Provide a string as a prefix for the last update date. By default, it looks like this: 2020-xx-xx [Updated: 2020-xx-xx] :: Author
   # updatedDatePrefix = "Updated"
 
