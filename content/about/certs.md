@@ -4,7 +4,8 @@ title = 'Certifications'
 +++
 
 <div style="display: flex; align-items: center; margin-bottom: 2rem;">
-  <img src="/CyberPortfolio/images/certifications/CISSPbadge.png" alt="CISSP" style="width: 100px; margin-right: 20px;" />
+  <div style="background-color: #f0f0f0; padding: 10px; border-radius: 8px; width: 100px; height: 100px; display: flex; align-items: center; justify-content: center; margin-right: 20px;">
+  <img src="/CyberPortfolio/images/certifications/CISSPbadge.png" alt="CISSP" style="width: 80px" />
   <div>
     <h3>Certified Information Systems Security Professional (CISSP)</h3>
     <p>Issued by: ISC²<br>
@@ -13,7 +14,8 @@ title = 'Certifications'
 </div>
 
 <div style="display: flex; align-items: center; margin-bottom: 2rem;">
-  <img src="/CyberPortfolio/images/certifications/CCSPbadge.png" alt="CCSP" style="width: 100px; margin-right: 20px;" />
+  <div style="background-color: #f0f0f0; padding: 10px; border-radius: 8px; width: 100px; height: 100px; display: flex; align-items: center; justify-content: center; margin-right: 20px;">
+  <img src="/CyberPortfolio/images/certifications/CCSPbadge.png" alt="CCSP" style="width: 80px" />
   <div>
     <h3>Certified Cloud Security Professional (CCSP)</h3>
     <p>Issued by: ISC²<br>
@@ -22,7 +24,8 @@ title = 'Certifications'
 </div>
 
 <div style="display: flex; align-items: center; margin-bottom: 2rem;">
-  <img src="/CyberPortfolio/images/certifications/GCIHBadge.png" alt="GCIH" style="width: 100px; margin-right: 20px;" />
+  <div style="background-color: #f0f0f0; padding: 10px; border-radius: 8px; width: 100px; height: 100px; display: flex; align-items: center; justify-content: center; margin-right: 20px;">
+  <img src="/CyberPortfolio/images/certifications/GCIHBadge.png" alt="GCIH" style="width: 80px" />
   <div>
     <h3>GIAC Certified Incident Handler (GCIH)</h3>
     <p>Issued by: GIAC<br>
@@ -32,7 +35,8 @@ title = 'Certifications'
 </div>
 
 <div style="display: flex; align-items: center; margin-bottom: 2rem;">
-  <img src="/CyberPortfolio/images/certifications/GCFABadge.png" alt="GCFA" style="width: 100px; margin-right: 20px;" />
+  <div style="background-color: #f0f0f0; padding: 10px; border-radius: 8px; width: 100px; height: 100px; display: flex; align-items: center; justify-content: center; margin-right: 20px;">
+  <img src="/CyberPortfolio/images/certifications/GCFABadge.png" alt="GCFA" style="width: 80px" />
   <div>
     <h3>GIAC Certified Forensic Analyst (GCFA)</h3>
     <p>Issued by: GIAC<br>
@@ -42,7 +46,8 @@ title = 'Certifications'
 </div>
 
 <div style="display: flex; align-items: center; margin-bottom: 2rem;">
-  <img src="CyberPortfolio/images/certifications/GNFABadge.png" alt="GNFA" style="width: 100px; margin-right: 20px;" />
+  <div style="background-color: #f0f0f0; padding: 10px; border-radius: 8px; width: 100px; height: 100px; display: flex; align-items: center; justify-content: center; margin-right: 20px;">
+  <img src="/CyberPortfolio/images/certifications/GNFABadge.png" alt="GNFA" style="width: 80px" />
   <div>
     <h3>GIAC Network Forensic Analyst (GNFA)</h3>
     <p>Issued by: GIAC<br>
@@ -52,7 +57,8 @@ title = 'Certifications'
 </div>
 
 <div style="display: flex; align-items: center; margin-bottom: 2rem;">
-  <img src="CyberPortfolio/images/certifications/GPENbadge.png" alt="GPEN" style="width: 100px; margin-right: 20px;" />
+  <div style="background-color: #f0f0f0; padding: 10px; border-radius: 8px; width: 100px; height: 100px; display: flex; align-items: center; justify-content: center; margin-right: 20px;">
+  <img src="/CyberPortfolio/images/certifications/GPENbadge.png" alt="GPEN" style="width: 80px" />
   <div>
     <h3>GIAC Penetration Tester (GPEN)</h3>
     <p>Issued by: GIAC<br>
