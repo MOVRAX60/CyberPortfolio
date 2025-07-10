@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Project Landing Page on Thom G Cyber Portfolio</title>
-    <link>//localhost:1313/projects/</link>
+    <link>https://movrax60.github.io/CyberPortfolio/projects/</link>
     <description>Recent content in Project Landing Page on Thom G Cyber Portfolio</description>
     <generator>Hugo</generator>
     <language>en</language>
     <lastBuildDate>Mon, 01 Jan 0001 00:00:00 +0000</lastBuildDate>
-    <atom:link href="//localhost:1313/projects/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://movrax60.github.io/CyberPortfolio/projects/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Sentinel Monitoring and Alerting with SQL Injections</title>
-      <link>//localhost:1313/projects/cloud/grad-project/</link>
+      <link>https://movrax60.github.io/CyberPortfolio/projects/cloud/grad-project/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>//localhost:1313/projects/cloud/grad-project/</guid>
+      <guid>https://movrax60.github.io/CyberPortfolio/projects/cloud/grad-project/</guid>
       <description>&lt;h1 id=&#34;contents&#34; class=&#34;contents-heading&#34; style=&#34;margin-top: 0in&#34;&gt;Contents&lt;/h1&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Introduction&lt;/li&gt;&#xA;&lt;li&gt;Resources&lt;/li&gt;&#xA;&lt;li&gt;Diagram&lt;/li&gt;&#xA;&lt;li&gt;Billing Alert&lt;/li&gt;&#xA;&lt;li&gt;Networking&lt;/li&gt;&#xA;&lt;li&gt;Configuration&lt;/li&gt;&#xA;&lt;li&gt;Virtual Network&lt;/li&gt;&#xA;&lt;li&gt;Subnet&lt;/li&gt;&#xA;&lt;li&gt;Virtual Machine Provisioning&lt;/li&gt;&#xA;&lt;li&gt;Bastion&lt;/li&gt;&#xA;&lt;li&gt;Database provisioning&lt;/li&gt;&#xA;&lt;li&gt;Basics&lt;/li&gt;&#xA;&lt;li&gt;Networking&lt;/li&gt;&#xA;&lt;li&gt;Review + Create&lt;/li&gt;&#xA;&lt;li&gt;Monitoring Alert&lt;/li&gt;&#xA;&lt;li&gt;Action Group&lt;/li&gt;&#xA;&lt;li&gt;Monitoring Alert Cont.&lt;/li&gt;&#xA;&lt;li&gt;WAF Policy&lt;/li&gt;&#xA;&lt;li&gt;Application Gateway Configuration&lt;/li&gt;&#xA;&lt;li&gt;Log Analytics Configuration&lt;/li&gt;&#xA;&lt;li&gt;Sentinel Configuration&lt;/li&gt;&#xA;&lt;li&gt;Data Connectors&lt;/li&gt;&#xA;&lt;li&gt;WAF&lt;/li&gt;&#xA;&lt;li&gt;Virtual Machine&lt;/li&gt;&#xA;&lt;li&gt;Sentinel Workbook templates&lt;/li&gt;&#xA;&lt;li&gt;DVWA Installation&lt;/li&gt;&#xA;&lt;li&gt;SQL Injection&lt;/li&gt;&#xA;&lt;li&gt;Sentinel Workbook&lt;/li&gt;&#xA;&lt;li&gt;Sentinel Incident&lt;/li&gt;&#xA;&lt;li&gt;WAF Prevention&lt;/li&gt;&#xA;&lt;li&gt;Remarks&lt;/li&gt;&#xA;&lt;li&gt;Resources&lt;/li&gt;&#xA;&lt;li&gt;Azure Resources&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h1 id=&#34;introduction&#34; class=&#34;western&#34; style=&#34;page-break-before: always&#34;&gt;Introduction&lt;/h1&gt;&#xA;&lt;p&gt;One of my main focuses for this project was the idea of deploying a&#xA;cloud SIEM solution. Sentinel is Azure&#39;s SIEM solution with a full&#xA;stack of security resources to enable security and monitoring of Cloud&#xA;and On-Premises deployments. Sentinel uses a series of data connectors&#xA;to gather data and log analytics workspace to ingest and visualize data.&#xA;The main service Sentinel uses the Log Analytics Workspace. This&#xA;workspace holds the data gathered from the endpoints in the network so&#xA;Sentinel can review, and flag logs as instructed. Most Azure services&#xA;can use Microsoft Defender for Cloud, which feeds data to Log Analytics.&#xA;To generate logs, Sentinel alerts, and Sentinel incidents, I need a&#xA;system that will be exploitable. To accomplish this, I am using an&#xA;Ubuntu VM running a Linux Apache PHP Stack and a MySQL Azure Database;&#xA;with these two services, I will be able to host DVWA or &amp;quot;Damn&#xA;Vulnerable Web Application,&amp;quot; which is filled with various web&#xA;application vulnerabilities. And the last key component of this project&#xA;is the Azure Web Application Firewall in detection mode because&#xA;prevention will immediately stop the exploitation of endpoints. I aim to&#xA;build a test environment and exploit the underlying database, which will&#xA;Send Alerts from the WAF, VM, and DB; through these alerts, I can&#xA;automate the creation of an incident.&lt;/p&gt;</description>
     </item>
   </channel>

@@ -2,39 +2,37 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>//localhost:1313/</loc>
+    <loc>https://movrax60.github.io/CyberPortfolio/</loc>
     <lastmod>2025-06-04T21:34:57-04:00</lastmod>
   </url><url>
-    <loc>//localhost:1313/write-ups/</loc>
+    <loc>https://movrax60.github.io/CyberPortfolio/write-ups/</loc>
     <lastmod>2025-06-04T21:34:57-04:00</lastmod>
   </url><url>
-    <loc>//localhost:1313/about/</loc>
+    <loc>https://movrax60.github.io/CyberPortfolio/about/</loc>
     <lastmod>2025-06-04T21:34:57-04:00</lastmod>
   </url><url>
-    <loc>//localhost:1313/about/certs/</loc>
+    <loc>https://movrax60.github.io/CyberPortfolio/about/certs/</loc>
     <lastmod>2025-06-04T21:34:57-04:00</lastmod>
   </url><url>
-    <loc>//localhost:1313/about/education/</loc>
+    <loc>https://movrax60.github.io/CyberPortfolio/about/education/</loc>
     <lastmod>2025-06-04T21:34:57-04:00</lastmod>
   </url><url>
-    <loc>//localhost:1313/projects/</loc>
+    <loc>https://movrax60.github.io/CyberPortfolio/projects/</loc>
     <lastmod>2025-06-04T21:34:57-04:00</lastmod>
   </url><url>
-    <loc>//localhost:1313/skills/</loc>
+    <loc>https://movrax60.github.io/CyberPortfolio/skills/</loc>
     <lastmod>2025-06-04T21:34:57-04:00</lastmod>
   </url><url>
-    <loc>//localhost:1313/index/links/</loc>
+    <loc>https://movrax60.github.io/CyberPortfolio/index/</loc>
   </url><url>
-    <loc>//localhost:1313/categories/</loc>
+    <loc>https://movrax60.github.io/CyberPortfolio/categories/</loc>
   </url><url>
-    <loc>//localhost:1313/index/</loc>
+    <loc>https://movrax60.github.io/CyberPortfolio/posts/</loc>
   </url><url>
-    <loc>//localhost:1313/posts/</loc>
+    <loc>https://movrax60.github.io/CyberPortfolio/projects/cloud/grad-project/</loc>
   </url><url>
-    <loc>//localhost:1313/projects/cloud/grad-project/</loc>
+    <loc>https://movrax60.github.io/CyberPortfolio/projects/cloud/grad-project/</loc>
   </url><url>
-    <loc>//localhost:1313/projects/cloud/grad-project/</loc>
-  </url><url>
-    <loc>//localhost:1313/tags/</loc>
+    <loc>https://movrax60.github.io/CyberPortfolio/tags/</loc>
   </url>
 </urlset>

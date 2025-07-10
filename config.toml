@@ -8,10 +8,6 @@ theme = "terminal"
 [markup.highlight]
   noClasses = false
 
-[caches]
-  [caches.images]
-    dir = ':cacheDir/images'
-
 [markup.goldmark.renderer]
   unsafe = true
 
