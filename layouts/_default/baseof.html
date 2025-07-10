@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="{{ $.Site.Language }}">
 <head>
+  {{ partial "goatcounter.html" . }}
   {{ block "title" . }}
     <title>{{ if .IsHome }}{{ $.Site.Title }}{{ else }}{{ .Title }} :: {{ $.Site.Title }}{{ end }}</title>
   {{ end }}
@@ -22,6 +23,6 @@
     {{ partial "footer.html" . }}
   {{ end }}
 </div>
-{{ partial "goatcounter.html" . }}
+
 </body>
 </html>
