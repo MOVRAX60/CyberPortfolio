@@ -95,7 +95,7 @@ theme = "terminal"
 
       [languages.en.params.logo]
         logoText = "Cyber Portfolio"
-        logoHomeLink = "/CyberPortfolio/"
+        logoHomeLink = "https://movrax60.github.io//CyberPortfolio/"
 
       [languages.en.menu]
         [[languages.en.menu.main]]
