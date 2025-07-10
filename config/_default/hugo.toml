@@ -95,7 +95,7 @@ theme = "terminal"
 
       [languages.en.params.logo]
         logoText = "Cyber Portfolio"
-        logoHomeLink = "/"
+        logoHomeLink = "/CyberPortfolio/"
 
       [languages.en.menu]
         [[languages.en.menu.main]]
