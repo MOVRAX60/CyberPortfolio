@@ -1,79 +1,11 @@
 ---
 title: "Secure Game Hosting with AWS"
-url: "/projects/cloud/grad-project/"
-description: "AWS"
-cover : "/images/awsgradproj/image1.jpeg"
+
+#cover : "/images/awssgh/image1.jpeg"
+
 ---
 
-# Table of Contents {#table-of-contents .TOC-Heading}
 
-[Overview [1](#overview)](#overview)
-
-[Diagram [1](#diagram)](#diagram)
-
-[Phase 1 [1](#phase-1)](#phase-1)
-
-[IAM [2](#iam)](#iam)
-
-[MackerelProjectRO [2](#mackerelprojectro)](#mackerelprojectro)
-
-[MackerelProjectAdmin [3](#mackerelprojectadmin)](#mackerelprojectadmin)
-
-[VPC [6](#vpc)](#vpc)
-
-[Security Groups [8](#security-groups)](#security-groups)
-
-[EC2 [10](#ec2)](#ec2)
-
-[Game Server Instance
-[10](#game-server-instance)](#game-server-instance)
-
-[Web Server Instance [11](#web-server-instance)](#web-server-instance)
-
-[RDS [12](#rds)](#rds)
-
-[App Database and Permissions
-[14](#app-database-and-permissions)](#app-database-and-permissions)
-
-[Route 53 [16](#route-53)](#route-53)
-
-[Certificate Manager [18](#certificate-manager)](#certificate-manager)
-
-[Public CA [18](#public-ca)](#public-ca)
-
-[Build Application Server
-[20](#build-application-server)](#build-application-server)
-
-[Building Web Server [27](#building-web-server)](#building-web-server)
-
-[Load Balancer [33](#load-balancer)](#load-balancer)
-
-[S3 [38](#s3)](#s3)
-
-[Phase 2 [41](#phase-2)](#phase-2)
-
-[CloudWatch [41](#cloudwatch)](#cloudwatch)
-
-[Admin [41](#admin)](#admin)
-
-[DB Alert [41](#db-alert)](#db-alert)
-
-[EC2 Alerts [43](#ec2-alerts)](#ec2-alerts)
-
-[User [44](#user)](#user)
-
-[Lambda with SNS triggers
-[47](#lambda-with-sns-triggers)](#lambda-with-sns-triggers)
-
-[Testing [51](#testing)](#testing)
-
-[WAF [52](#waf)](#waf)
-
-[Security Hub [57](#security-hub)](#security-hub)
-
-[Summary [60](#summary)](#summary)
-
-[Resources [61](#resources)](#resources)
 
 # Overview
 
@@ -98,7 +30,7 @@ Server.
 
 # Diagram
 
-![Diagram](/images/awsgradproj/image1.jpeg)
+![Diagram](/images/awssgh/image1.jpeg)
 
 
 # Phase 1
@@ -111,7 +43,7 @@ environment. The admin group will be the few users that can perform
 reboots and troubleshoot issues in the environment. I will open the IAM
 portal and start creating the groups
 
-![](/images/awsgradproj/image2.png)
+![](/images/awssgh/image2.png)
 
 ### MackerelProjectRO
 
@@ -138,7 +70,7 @@ AmazonRDSReadOnlyAccess
 
 AWSCloudTrail_ReadOnlyAccess
 
-![](/images/awsgradproj/image3.png)
+![](/images/awssgh/image3.png)
 
 ### MackerelProjectAdmin 
 
@@ -166,22 +98,22 @@ AWSCertificateManagerFullAccess
 
 AWSCloudTrail_FullAccess
 
-![](/images/awsgradproj/image4.png)
+![](/images/awssgh/image4.png)
 
 #### Admins
 
 I will add myself to the admin group
 
-![](/images/awsgradproj/image5.png)
+![](/images/awssgh/image5.png)
 
 And then add the user to the selected group
 
-![](/images/awsgradproj/image6.png)
+![](/images/awssgh/image6.png)
 
 And then I can see the review of the user to be created, and I can
 finish adding this user
 
-![](/images/awsgradproj/image7.png)
+![](/images/awssgh/image7.png)
 
 Not that the Admin User has been created; I will move to the read-only
 user
@@ -190,15 +122,15 @@ user
 
 I will go back to the IAM dashboard and click create a new user
 
-![](/images/awsgradproj/image8.png)
+![](/images/awssgh/image8.png)
 
 And then, I can add the permissions
 
-![](/images/awsgradproj/image9.png)
+![](/images/awssgh/image9.png)
 
 And Review the new user is created
 
-![](/images/awsgradproj/image10.png)
+![](/images/awssgh/image10.png)
 
 And now I can hit create.
 
@@ -216,9 +148,9 @@ I will start by running the following commands to build a VPC for this
 deployment. For the rest of the project, I will use the wrathenv tag
 throughout to keep all the environment resources grouped.
 
-![](/images/awsgradproj/image11.JPG)
+![](/images/awssgh/image11.JPG)
 
-![](/images/awsgradproj/image12.JPG)
+![](/images/awssgh/image12.JPG)
 
 I will create a VPC and more in the AWS web interface with the following
 configurations.
@@ -226,11 +158,11 @@ configurations.
 One excellent piece of the \"VPC and More\" is this preview which is
 nice to see how this all fits together
 
-![](/images/awsgradproj/image13.JPG)
+![](/images/awssgh/image13.JPG)
 
 And now we can see the VPC is being built
 
-![](/images/awsgradproj/image14.JPG)
+![](/images/awssgh/image14.JPG)
 
 Now that the VPC has been created, I can start configuring the access
 between the subnets
@@ -244,21 +176,21 @@ The First is the GameServerConnections group, which allows End users to
 Connect to TCP/8085, the World port, and TCP/3724, the Authentication
 port.
 
-![](/images/awsgradproj/image15.jpeg)
+![](/images/awssgh/image15.jpeg)
 
 The Next group will be WebServerConnections to allow end users to
 connect to the website using HTTPS
 
-![](/images/awsgradproj/image16.png)
+![](/images/awssgh/image16.png)
 
 Now for the internal groups, I need to add a security group called
 WebServerInternalConnections for the Web Server to talk to the Database
 and the Authentication Server.
 
-![](/images/awsgradproj/image17.png)
+![](/images/awssgh/image17.png)
 
-![](/images/awsgradproj/image18.png)
-![](/images/awsgradproj/image19.png)
+![](/images/awssgh/image18.png)
+![](/images/awssgh/image19.png)
 
 And the last rule I will need is for the
 Application and Web Server to talk to the database; this will be entered
@@ -273,8 +205,8 @@ server and the web server in their respective subnets.
 
 ### Game Server Instance
 
- ![](/images/awsgradproj/image20.JPG)
- ![](/images/awsgradproj/image21.JPG)
+ ![](/images/awssgh/image20.JPG)
+ ![](/images/awssgh/image21.JPG)
  I have elected to use TrinityCore as the
  Game Engine for this project. This can be built on different OSes, but
  it is recommended for Debian 10+. So for this, I will use a Debian 11
@@ -283,7 +215,7 @@ server and the web server in their respective subnets.
  for the Game engine to be built, enabling me to begin building the
  server as soon as it is available.
 
-![](/images/awsgradproj/image22.JPG)
+![](/images/awssgh/image22.JPG)
 
  Now I can launch the instance.
 
@@ -294,10 +226,10 @@ server and the web server in their respective subnets.
  run it on a t2.micro this should be more than enough to host the web
  page.
 
- ![](/images/awsgradproj/image23.JPG)
- ![](/images/awsgradproj/image24.JPG)
+ ![](/images/awssgh/image23.JPG)
+ ![](/images/awssgh/image24.JPG)
 
- ![](/images/awsgradproj/image25.png)
+ ![](/images/awssgh/image25.png)
 
 ## RDS
 
@@ -309,9 +241,9 @@ For this, I need a MariaDB 10.6.10, and I will use the free tier; I
 don\'t intend to max out this database, so a t3.micro should be
 sufficient.
 
-![](/images/awsgradproj/image26.JPG)
+![](/images/awssgh/image26.JPG)
 
-![](/images/awsgradproj/image27.png)
+![](/images/awssgh/image27.png)
 
 I am opting to use a 20GB database because the previous testing with
 this game server generally only needs about 5GB when fully deployed. I
@@ -319,9 +251,9 @@ will let the RDS wizard create a subnet for the DB. I am not going to
 set up too much on the security group end because I want to come back to
 this and do all of the configurations for the security group at one time
 
-![](/images/awsgradproj/image28.JPG)
+![](/images/awssgh/image28.JPG)
 
-![](/images/awsgradproj/image29.jpeg)
+![](/images/awssgh/image29.jpeg)
 
 Now that the database is built, I need to add 4 separate databases to
 the RDS instance. Fusion, world, character, and auth.
@@ -332,7 +264,7 @@ I will connect to the database and start building these tables; the
 permissions need to connect everything together. I will log into the Web
 server to start the configuration.
 
-![](/images/awsgradproj/image30.png)
+![](/images/awssgh/image30.png)
 
 And then, I can log into the RDS instance
 
@@ -340,7 +272,7 @@ And then, I can log into the RDS instance
 mysql -u wotlkadmin -h wrathdb.canjffbz17dk.us-east-1.rds.amazonaws.com -p
 ```
 
-![RDS](/images/awsgradproj/image32.png)
+![RDS](/images/awssgh/image32.png)
 
 Now that I can connect to the database, I can start building new service
 accounts and build the database so that the application server and web
@@ -381,7 +313,7 @@ GRANT ALL PRIVILEGES ON auth.* TO 'MackerelWebSA'@'%' WITH GRANT OPTION;
 ```
 I will double-check the databases have been created
 
-![](/images/awsgradproj/image34.png)
+![](/images/awssgh/image34.png)
 
 And it looks like we are ready to move on
 
@@ -391,17 +323,17 @@ I currently have a few domains in my AWS account, so I am going to reuse
 my projectmackerel.com domain to add entries for the webserver SSL cert
 and the application servers world port
 
-![](/images/awsgradproj/image35.png)
+![](/images/awssgh/image35.png)
 
 I will Create an A Record for cms.projectmackerel.com that points to the
 load balancer
 
-![](/images/awsgradproj/image36.JPG)
+![](/images/awssgh/image36.JPG)
 
 And then I will create an A Record for world.projectmackerel.com pointed
 to its load balancer
 
-![](/images/awsgradproj/image37.JPG)
+![](/images/awssgh/image37.JPG)
 
 Since the records have been generated, I can move on to creating the
 actual certificates for the web server.
@@ -422,19 +354,19 @@ For the Webserver, I will need a certificate to ensure that the
 webserver traffic is encrypted. I will go to the Certificate manager page
 and request a public certificate.
 
-![](/images/awsgradproj/image38.JPG)
+![](/images/awssgh/image38.JPG)
 
 Then select the public type
 
-![](/images/awsgradproj/image39.png)
+![](/images/awssgh/image39.png)
 
 I will use the cms entry created in the Route 53 section.
 
-![](/images/awsgradproj/image40.JPG)
+![](/images/awssgh/image40.JPG)
 
 And now we can see that the newly requested certificate is now pending
 
-![](/images/awsgradproj/image41.png)
+![](/images/awssgh/image41.png)
 
 Now that I have validated the SSL cert for this, I will use it later on
 when it comes to the web server.
@@ -448,7 +380,7 @@ when it comes to the web server.
  trinity core that can be found here
  <https://trinitycore.info/en/install/Core-Installation/linux-core-installation>
 
- ![](/images/awsgradproj/image42.png)
+ ![](/images/awssgh/image42.png)
 
  And then clone the GitHub repository
 
@@ -457,7 +389,7 @@ cd ~/h*
 git clone https://github.com/TrinityCore/TrinityCore.git 3.3.5
 ```
 
-![](/images/awsgradproj/image44.png)
+![](/images/awssgh/image44.png)
 
 And now we can make our directory
 
@@ -473,31 +405,31 @@ And we can start building the actual game engine
 cmake ../ -DCMAKE_INSTALL_PREFIX=/home/$USER/server -DTOOLS=1 -DWITH_WARNINGS=1
 ```
 
-![](/images/awsgradproj/image47.png)
+![](/images/awssgh/image47.png)
 
 And then, the engine will begin building with
 
-![](/images/awsgradproj/image48.png)
+![](/images/awssgh/image48.png)
 
 This will take a while to run
 
-![](/images/awsgradproj/image49.png)
+![](/images/awssgh/image49.png)
 
 Now that it has finished, we can start the extractors. I uploaded a copy
 of the map files via SCP
 
-![](/images/awsgradproj/image50.png)
+![](/images/awssgh/image50.png)
 
 Now I can set up the extractor to the Server Engine folder and the
 Client files and start the extractor
 
-![](/images/awsgradproj/image51.JPG)
+![](/images/awssgh/image51.JPG)
 
 Now that the extractor is running, it is time to wait once again
 
-![](/images/awsgradproj/image52.JPG)
+![](/images/awssgh/image52.JPG)
 
-![](/images/awsgradproj/image53.png)
+![](/images/awssgh/image53.png)
 
 Now that the Extractors have finished, I can move the generated files to
 their directory and set up the configuration files
@@ -515,11 +447,11 @@ So my connection string will be
 wrathdb.canjffbzl7dk.us-east-oc-1.rds.amazonaws.com;3306;mackerelappSA;password;auth
 ```
 
-![](/images/awsgradproj/image56.png)
+![](/images/awssgh/image56.png)
 
 And then, I will make the same changes in the world config file
 
-![](/images/awsgradproj/image57.png)
+![](/images/awssgh/image57.png)
 
 For the Webserver to create users in the database, it will need access
 to the RA port, and the default bind is 0.0.0.0, which means any
@@ -527,14 +459,14 @@ interface on the server. I want to change this to reflect the internal
 IP only because this should not be open to the internet, so that I will
 change this to 172.16.17.30.
 
-![](/images/awsgradproj/image58.png)
+![](/images/awssgh/image58.png)
 
 Now that the configuration is all set, I can run the World Service; this
 will populate the database.
 
-![](/images/awsgradproj/image59.png)
+![](/images/awssgh/image59.png)
 
-![](/images/awsgradproj/image60.png)
+![](/images/awssgh/image60.png)
 
 Now that the database has been populated and the world server is
 running. I will need to set up a service account on the world server that
@@ -561,75 +493,75 @@ an information center for Users.
 I ran user data to get the dependencies installed when the instance was
 built, and I can confirm it worked by opening the Apache test page
 
-![](/images/awsgradproj/image62.png)
+![](/images/awssgh/image62.png)
 
 I will log into my EC2 instance and begin setting up the CMS, and Now I
 can clone the GitHub Repo
 
-![](/images/awsgradproj/image63.png)
+![](/images/awssgh/image63.png)
 
 And then, I can begin to configure the permissions for the new
 Apache-based website
 
-![](/images/awsgradproj/image64.png)
+![](/images/awssgh/image64.png)
 
-![](/images/awsgradproj/image65.png)
+![](/images/awssgh/image65.png)
 
 And now the FusionGEN CMS can be configured
 
-![](/images/awsgradproj/image66.png)
+![](/images/awssgh/image66.png)
 
 Now we can test the requirements to make sure the webpage has
 permissions and connectivity to all resources
 
-![](/images/awsgradproj/image67.png)
+![](/images/awssgh/image67.png)
 
 Now I can set the Webpages title to add the server name and create an
 admin account for the CMS page
 
-![](/images/awsgradproj/image68.png)
+![](/images/awssgh/image68.png)
 
 On this next screen, I can add the database information created earlier
 
-![](/images/awsgradproj/image69.png)
+![](/images/awssgh/image69.png)
 
 Now I can use the user account created earlier to connect to the realm,
 and this information allows the CMS to create user accounts
 
-![](/images/awsgradproj/image70.png)
+![](/images/awssgh/image70.png)
 
 With the site able to connect to the realm, I can make a website admin
 account
 
-![](/images/awsgradproj/image71.png)
+![](/images/awssgh/image71.png)
 
 And now the web portal can be accessed
 
-![](/images/awsgradproj/image72.png)
+![](/images/awssgh/image72.png)
 
 Now I will see if I can register an account to make sure the setup is
 working
 
 I will enter some information for testing purposes
 
-![](/images/awsgradproj/image73.png)
+![](/images/awssgh/image73.png)
 
 And I will click create an account, and we can now see the user panel as
 \"testuser.\"
 
-![](/images/awsgradproj/image74.png)
+![](/images/awssgh/image74.png)
 
 And now, I can verify that I can log in
 
-![](/images/awsgradproj/image75.JPG)
-![](/images/awsgradproj/image76.JPG)
-![](/images/awsgradproj/image77.JPG)
+![](/images/awssgh/image75.JPG)
+![](/images/awssgh/image76.JPG)
+![](/images/awssgh/image77.JPG)
 
 One last element I want to change in this configuration is renaming the
 default world and assigning the correct IP, and I will use DBeaver to
 open an SSH tunnel to the Webserver and then connect to the DB
 
-![](/images/awsgradproj/image78.png)
+![](/images/awssgh/image78.png)
 
 Now that everything has been set up for the server and webpage, Users
 can register an account and start logging in.
@@ -641,45 +573,45 @@ the WAF deployment. Cloudfront can be used for this typically, but it
 didn\'t quite fit the needs of this project. So I will open the ec2
 dashboard and go to load balancing.
 
-![](/images/awsgradproj/image79.png)
+![](/images/awssgh/image79.png)
 
 I will Create an Application Load Balancer
 
-![](/images/awsgradproj/image80.png)
+![](/images/awssgh/image80.png)
 
 I am going to call this WrathCMSLB and connect it to the wrathenv vpc
 
-![](/images/awsgradproj/image81.png)
+![](/images/awssgh/image81.png)
 
-![](/images/awsgradproj/image82.png)
+![](/images/awssgh/image82.png)
 
 And then, I need to create a target group containing the web server
 
-![](/images/awsgradproj/image83.png)
+![](/images/awssgh/image83.png)
 
 I can now add the web server to the load balancer
 
-![](/images/awsgradproj/image84.png)
+![](/images/awssgh/image84.png)
 
 And now, going back to the load balancer, I can add the target group to
 it
 
-![](/images/awsgradproj/image85.png)
+![](/images/awssgh/image85.png)
 
 Once the load balancer has been created, I can edit the listener and add
 the SSL certificate
 
-![](/images/awsgradproj/image86.png)
+![](/images/awssgh/image86.png)
 
 Now I will update the DNS record in Route53 to reflect the changes
 
-![](/images/awsgradproj/image87.png)
+![](/images/awssgh/image87.png)
 
 And now, if we go to <https://cms.projectmackerel.com/>
 
 We can see the CMS page
 
-![](/images/awsgradproj/image88.png)
+![](/images/awssgh/image88.png)
 
 ## S3
 
@@ -690,38 +622,38 @@ open the client and change the config list to world.mackerelproject.com,
 and then I will open the realmlist configuration file to reflect the same
 server name
 
-![](/images/awsgradproj/image89.png)
-![](/images/awsgradproj/image90.JPG)
+![](/images/awssgh/image89.png)
+![](/images/awssgh/image90.JPG)
 
 I will zip the file because it is large
 
-![](/images/awsgradproj/image91.png)
+![](/images/awssgh/image91.png)
 
 And now that it is zipped, I can build an S3 Bucket to store it in.
 I will go to the S3 dashboard and create a bucket
 
-![](/images/awsgradproj/image92.png)
+![](/images/awssgh/image92.png)
 
-![](/images/awsgradproj/image93.png)
+![](/images/awssgh/image93.png)
 
 Now that the bucket is active, I will upload the client
 
-![](/images/awsgradproj/image94.png)
+![](/images/awssgh/image94.png)
 
 And then I will add the zip file to be uploaded
 
-![](/images/awsgradproj/image95.png)
+![](/images/awssgh/image95.png)
 
 And now I will wait as the file is uploaded to S3
 
-![](/images/awsgradproj/image96.png)
+![](/images/awssgh/image96.png)
 
 Now that the file has been uploaded, I will make it public
 
 And now this link can be posted onto the server discord so only approved
 users can download the client.
 
-![](/images/awsgradproj/image97.png)
+![](/images/awssgh/image97.png)
 
 # Phase 2
 
@@ -748,26 +680,26 @@ issue.
 
  I will open the Cloudwatch dashboard and create an alarm
 
-![](/images/awsgradproj/image98.png)
+![](/images/awssgh/image98.png)
 
  Then I will open the select metric window
 
-![](/images/awsgradproj/image99.png)
+![](/images/awssgh/image99.png)
 
  This will be for the DB, so I will click RDS and track the CPU
  utilization Metric. The highest utilization is 5%, so I will set the
  alarm for anything over 15%
 
-![](/images/awsgradproj/image100.png)
+![](/images/awssgh/image100.png)
 
  And then, I will create a notification to my email alerting me to this
  issue
 
-![](/images/awsgradproj/image101.png)
+![](/images/awssgh/image101.png)
 
  And then, I will name the alert
 
-![](/images/awsgradproj/image102.png)
+![](/images/awssgh/image102.png)
 
  And then, I will review and create the alarm
 
@@ -782,15 +714,15 @@ issue.
  I will do the same process as before, but I will select
  EC2\Per-Instance Metrics\CPU Utilization
 
-![](/images/awsgradproj/image103.png)
+![](/images/awssgh/image103.png)
 
  And then, I will add the threshold
 
-![](/images/awsgradproj/image104.png)
+![](/images/awssgh/image104.png)
 
  I will create a new topic for this called WrathApp_High_CPU_Usage
 
-![](/images/awsgradproj/image105.png)
+![](/images/awssgh/image105.png)
 
  Now that this alert has been set up, I want to make an alert for the
  Userbase.
@@ -806,25 +738,25 @@ issue.
  metrics, but if the server CPU Utilization is zero, it is a safe
  assumption that the server is down.
 
-![](/images/awsgradproj/image106.png)
+![](/images/awssgh/image106.png)
 
  I will set the threshold to lower than 0.1
 
-![](/images/awsgradproj/image107.png)
+![](/images/awssgh/image107.png)
 
  I will call this App_Server_outage and set this to send alerts to the
  admin
 
-![](/images/awsgradproj/image108.png)
+![](/images/awssgh/image108.png)
 
  Now that the App metric is created, I will make the same alert for the
  webpage
 
-![](/images/awsgradproj/image109.png)
+![](/images/awssgh/image109.png)
 
  And now I can see all of the alarms that have been created
 
-![](/images/awsgradproj/image110.png)
+![](/images/awssgh/image110.png)
 
  Now to connect these alarms to the Userbase, I am going to open SNS
  and set up some configurations
@@ -840,15 +772,15 @@ issue.
  To start, I will need to create the webhook in Discord; I have already
  set up a discord server for this project
 
-![](/images/awsgradproj/image111.png)
+![](/images/awssgh/image111.png)
 
  Then I will head to integrations and select create webhook
 
-![](/images/awsgradproj/image112.JPG)
+![](/images/awssgh/image112.JPG)
 
  And then, a webhook will be created for me
 
-![](/images/awsgradproj/image113.png)
+![](/images/awssgh/image113.png)
 
  I will name this webhook MackerelBot and copy the webhook URL.
 
@@ -866,37 +798,37 @@ rm -r *dist-info __pycache__
  I will then take this folder and zip it, and now I can go to lambda \
  layers
 
-![](/images/awsgradproj/image115.png)
+![](/images/awssgh/image115.png)
 
  And now, I can select the following options to build the layer and
  click create.
 
-![](/images/awsgradproj/image116.png)
+![](/images/awssgh/image116.png)
 
  Now that the lambda layer has been created, I can work on the function
 
-![](/images/awsgradproj/image117.png)
+![](/images/awssgh/image117.png)
 
  I will set the Name, Runtime to Python, and the architecture to x86_64
  and then create
 
-![](/images/awsgradproj/image118.png)
+![](/images/awssgh/image118.png)
 
  Now that the function is created, I will open it and then add the
  layer previously created
 
-![](/images/awsgradproj/image119.png)
+![](/images/awssgh/image119.png)
 
  And we can see this in the overview, And I will add a trigger from the
  SNS Alert for the App Server Outages
 
-![](/images/awsgradproj/image120.png)
+![](/images/awssgh/image120.png)
 
-![](/images/awsgradproj/image121.png)
+![](/images/awssgh/image121.png)
 
  Now I can paste my code into the lambda function
 
-![](/images/awsgradproj/image122.png)
+![](/images/awssgh/image122.png)
 
  And click Deploy.
 
@@ -907,23 +839,23 @@ rm -r *dist-info __pycache__
  will be Website_Outage instead, and the message will be slightly
  different
 
-![](/images/awsgradproj/image123.png)
+![](/images/awssgh/image123.png)
 
 ### Testing
 
  Now that the Alarms and their Accompanying Alerts have been created, I
  will stop the Servers
 
-![](/images/awsgradproj/image124.png)
+![](/images/awssgh/image124.png)
 
  And now, if we look at the Discord channel, we will see MackerelBot
  has sent a message saying the Website and App Server are both down.
 
-![](/images/awsgradproj/image125.png)
+![](/images/awssgh/image125.png)
 
-![](/images/awsgradproj/image126.png)
+![](/images/awssgh/image126.png)
 
-![](/images/awsgradproj/image127.png)
+![](/images/awssgh/image127.png)
 
 And if we open the admin email, we will
  see notifications that the Website and App Servers are both down.
@@ -937,21 +869,21 @@ And if we open the admin email, we will
  handling the request. To enable the WAF, I will go to the load balancer
  dashboard and integrations.
 
-![](/images/awsgradproj/image128.png)
+![](/images/awssgh/image128.png)
 
  From here, I can enable the WAF by clicking the create web ACL button
 
-![](/images/awsgradproj/image129.png)
+![](/images/awssgh/image129.png)
 
  I will call the web ACL wrath_waf
 
-![](/images/awsgradproj/image130.png)
+![](/images/awssgh/image130.png)
 
  For associated AWS resources, I will add the CMS LB
 
-![](/images/awsgradproj/image131.png)
+![](/images/awssgh/image131.png)
 
-![](/images/awsgradproj/image132.png)
+![](/images/awssgh/image132.png)
 
  For rules, I will use the AWS Managed rule groups, and I am going to
  enable all of the free rules
@@ -961,44 +893,44 @@ And if we open the admin email, we will
  components of this project are included in the free rule sets, such as
  Linux, PHP, and SQL. It should be a fair baseline for the environment.
 
-![](/images/awsgradproj/image133.png)
+![](/images/awssgh/image133.png)
 
  Now that the WAF Web ACLs have been created, we can see the WAF
  dashboard
 
-![](/images/awsgradproj/image134.png)
+![](/images/awssgh/image134.png)
 
  Now that I have let the WAF run overnight, we can start to see traffic
  going to the Webserver. We can see that multiple requests are being
  sent to the web server, and some are being blocked for malicious
  behavior
 
-![](/images/awsgradproj/image135.png)
+![](/images/awssgh/image135.png)
 
  And looking at the newer request, we can see that some of these are
  being allowed
 
-![](/images/awsgradproj/image136.png)
+![](/images/awssgh/image136.png)
 
  I want to add a rule to block traffic from outside the US. Though this
  doesn\'t stop threats completely, it will help block off unneeded
  traffic from reaching the Web server, and I will open rules and then go
  to add rules and add my own rule.
 
-![](/images/awsgradproj/image137.png)
+![](/images/awssgh/image137.png)
 
  And I will call this rule GeoIPBlock
 
-![](/images/awsgradproj/image138.png)
+![](/images/awssgh/image138.png)
 
  Then I will add the statement Originates from a country in and add
  everything except the US
 
-![](/images/awsgradproj/image139.png)
+![](/images/awssgh/image139.png)
 
  And then, I will set the action to block
 
-![](/images/awsgradproj/image140.png)
+![](/images/awssgh/image140.png)
 
  Now the rule will be created, and it will begin blocking traffic that
  does not originate from a US-based IP address.
@@ -1009,14 +941,14 @@ And if we open the admin email, we will
  hub. I will move to the Security Hub dashboard and start configuring
  the security hub
 
-![](/images/awsgradproj/image141.png)
+![](/images/awssgh/image141.png)
 
  I am going to use the standard setting for this because this is a
  project I won\'t need PCI compliance. Now that the security hub has
  been enabled, it will scan the environment and build its security
  score.
 
-![](/images/awsgradproj/image142.png)
+![](/images/awssgh/image142.png)
 
  I am using the security hub as a basis for security issues. I can see
  what issues might be occurring within the wrathenv VPC.
@@ -1024,17 +956,17 @@ And if we open the admin email, we will
  Now that the security hub has been running, we can see it has found
  some issues in the environment
 
-![](/images/awsgradproj/image143.png)
+![](/images/awssgh/image143.png)
 
  If we look at the findings, we can see more details about the issues
  in the environment
 
- ![](/images/awsgradproj/image144.png)
+ ![](/images/awssgh/image144.png)
 
  If we open the first alert, we can see more details on the issues
  found in the environment
 
-![](/images/awsgradproj/image145.png)
+![](/images/awssgh/image145.png)
 
  SecurityHub also offers remediation advice for issues in the
  environment. This specific issue can be found here.
